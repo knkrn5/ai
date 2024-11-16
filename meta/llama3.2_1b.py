@@ -4,12 +4,9 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 model_name = "meta-llama/Llama-3.2-1B"
 
 # Load the tokenizer and model
-try:
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(model_name)
-except Exception as e:
-    print(f"Error loading model or tokenizer: {e}")
-    exit()
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
 
 # Set the pad_token_id to avoid warnings
 if tokenizer.pad_token is None:
@@ -18,8 +15,8 @@ model.config.pad_token_id = model.config.eos_token_id
 
 while True:
     # Take user input
-    user_input = input("Enter your prompt (or type 'exit' to quit): ")
-    if user_input.lower() == "exit":
+    user_input = input("Enter your prompt (or type 'exit' or 'q' to quit): ")
+    if user_input.lower() in ["exit", 'q']:
         print("Exiting...")
         break
 
