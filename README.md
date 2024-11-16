@@ -10,10 +10,11 @@ Welcome to AI! The reason for creating this project is to get the good explanati
 - [Models used](#Models-used)
 
 ## Models-used
-- Qwen2 from Alibala cloud
-- Llama from Meta
+- Qwen2 (1.5b parameter) from Alibala cloud
+- Llama (1b parameter) from Meta
 - Nvidia API
-- GPT2-XL from Open AI
+- GPT2-XL (1.5b parameter) from Open AI
+- Phi (1.4b parameter) from microsoft
 
 ## Introduction
 The reason for creating this project is to get the good explanation of the prompt and the make the follow up questions very simple point by point or number by number.
