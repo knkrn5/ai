@@ -1,0 +1,13 @@
+# Ignore the entire virtual environment folder
+mypersonalenv/
+data/
+.env  
+.venv
+.vscode
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Other common ignores
+.DS_Store
