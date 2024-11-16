@@ -30,7 +30,7 @@ while True:
     outputs = model.generate(
         inputs['input_ids'],
         attention_mask=inputs['attention_mask'],  # Add attention mask
-        max_length=100,  # Adjust max_length as needed
+        max_length=200,  # Adjust max_length as needed
         temperature=0.7,  # Control randomness of the output
         num_return_sequences=1,  # Number of responses to generate
         pad_token_id=tokenizer.pad_token_id,  # Avoid warnings
