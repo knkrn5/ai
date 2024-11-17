@@ -15,6 +15,7 @@ Welcome to AI! The reason for creating this project is to get the good explanati
 - Nvidia API
 - GPT2-XL (1.5b parameter) from Open AI
 - Phi (1.4b parameter) from microsoft
+- Gemini 1.5 flash from google
 
 ## Introduction
 The reason for creating this project is to get the good explanation of the prompt and the make the follow up questions very simple point by point or number by number.

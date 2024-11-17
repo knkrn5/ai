@@ -23,7 +23,7 @@ def extract_pdf_text(pdf_path):
     return text
 
 # Ask for PDF file path and extract the text
-pdf_path = "mypersonalenv/data/economic.pdf"
+pdf_path = "./data/economic.pdf"
 pdf_text = extract_pdf_text(pdf_path)
 
 print("\nPDF Text Extracted Successfully!")
