@@ -1,7 +1,10 @@
 import os
 from huggingface_hub import InferenceClient
+from dotenv import load_dotenv
 
-client = InferenceClient(api_key=os.getenv("hugging_face_api"))
+load_dotenv()
+
+client = InferenceClient(api_key=os.getenv("HUGGING_FACE_API"))
 
 user_input = input("Ask the question or type 'exit' or 'q' to quit: ")
 
