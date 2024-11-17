@@ -14,7 +14,7 @@ client = OpenAI(
 txt_path = "./data/document.txt"
 
 # Open the file in read mode ('r')
-with open(txt_path, 'r') as file:
+with open(txt_path, 'r', encoding='utf-8') as file:
     # Read the entire content of the file
     txt_content = file.read()
     print("text read successfully")
