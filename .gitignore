@@ -11,3 +11,8 @@ __pycache__/
 
 # Other common ignores
 .DS_Store
+
+#wp-data
+wp-csv-data/
+wp-json-data/
+wp-txt-data/
