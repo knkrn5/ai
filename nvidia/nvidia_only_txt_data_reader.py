@@ -10,20 +10,18 @@ client = OpenAI(
     api_key=os.getenv("NVIDIA_API")
 )
 
-#txt docs path
+# txt docs path
 txt_path = "./data/document.txt"
 
 # Open the file in read mode ('r')
 with open(txt_path, 'r', encoding='utf-8') as file:
     # Read the entire content of the file
     txt_content = file.read()
-    print("text read successfully")
-    
+    print("Text read successfully.")
 
 if not txt_content:
     print("Failed to extract text from the txt. Please check the file path and content.")
     exit()
-
 
 while True:
     # Take user input for the question
@@ -38,7 +36,7 @@ while True:
     completion = client.chat.completions.create(
         model="nvidia/llama-3.1-nemotron-70b-instruct",
         messages=[
-            {"role": "system", "content": "You are a AI."},
+            {"role": "system", "content": "You are an AI assistant. Only answer questions using the following text data. Do not use outside knowledge."},
             {"role": "system", "content": f"Text Data:\n{txt_content}"},
             {"role": "user", "content": user_question}
         ],

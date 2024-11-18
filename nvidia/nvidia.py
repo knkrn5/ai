@@ -23,7 +23,7 @@ while True:
     completion = client.chat.completions.create(
         model="nvidia/llama-3.1-nemotron-70b-instruct",
         messages=[
-            {"role": "system", "content": "You are a AI."},
+            {"role": "system", "content": " your are an AI assistant."},
             {"role": "user", "content": user_question}
         ],
         temperature=0.5,
