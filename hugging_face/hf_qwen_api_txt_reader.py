@@ -10,7 +10,7 @@ txt_path = "./data/document.txt"
 
 with open(txt_path, "r", encoding="utf-8") as file:
     txt_content = file.read()
-    print(txt_content)
+    print("text read successfully")
     
     
 if not txt_content:
