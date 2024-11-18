@@ -7,8 +7,13 @@ import csv
 load_dotenv()
 
 # List to store rows as dictionaries
-csv_files = ['wp-csv-data/about-us.csv', 'wp-csv-data/contact-info.csv', 'wp-csv-data/our-team.csv']
-# combined_data = []
+csv_files = ['wp-csv-data/wp-pages.csv', 
+            'wp-csv-data/wp-home.csv', 
+            'wp-csv-data/contact-info.csv', 
+            'wp-csv-data/about-us.csv', 
+            'wp-csv-data/our-team.csv', 
+            'wp-csv-data/our-plan.csv'
+            ]
 
 # Initialize the OpenAI client with NVIDIA's base URL and API key
 client = OpenAI(
@@ -57,7 +62,7 @@ while True:
             model="nvidia/llama-3.1-nemotron-70b-instruct",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant. Only answer based on the provided CSV data. Do not answer any questions that are not based on the CSV data."},
-                {"role": "assistant", "content": "I will answer questions only based on the provided CSV data."},
+                {"role": "assistant", "content": "I will only answer questions only based on the provided CSV data."},
                 {"role": "system", "content": f"CSV Data:\n{csv_text_str}"},
                 {"role": "user", "content": user_question}
             ],
