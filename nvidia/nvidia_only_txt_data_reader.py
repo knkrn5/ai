@@ -37,6 +37,7 @@ while True:
         model="nvidia/llama-3.1-nemotron-70b-instruct",
         messages=[
             {"role": "system", "content": "You are an AI assistant. Only answer questions using the following text data. Do not use outside knowledge."},
+            {"role": "assistant", "content": "I will answer questions only based on the provided text data."},
             {"role": "system", "content": f"Text Data:\n{txt_content}"},
             {"role": "user", "content": user_question}
         ],

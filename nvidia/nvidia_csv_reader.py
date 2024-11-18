@@ -49,7 +49,8 @@ while True:
         completion = client.chat.completions.create(
             model="nvidia/llama-3.1-nemotron-70b-instruct",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant. Use the provided CSV data to assist the user."},
+                {"role": "system", "content": "You are a helpful assistant. only answer based on the provided CSV data. Do not answer any questions that are not based on the CSV data."},
+                {"role": "assistant", "content": "I will answer questions only based on the provided csv data."},
                 {"role": "system", "content": f"CSV Data:\n{csv_text}"},
                 {"role": "user", "content": user_question}
             ],
