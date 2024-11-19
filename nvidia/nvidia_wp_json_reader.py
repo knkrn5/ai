@@ -30,8 +30,8 @@ def extract_json_text(json_files):
     all_data = []  # List to store combined data from all files
     for json_data in json_files:
         try:
-            with open(json_data, 'r', encoding='utf-8') as file:
-                reader = json.load(file) # Parse the JSON content as python dictionary
+            with open(json_data, 'r', encoding='utf-8') as jsonFile:
+                reader = json.load(jsonFile) # Parse the JSON content as python dictionary
                 for row in reader:
                     all_data.append(row)
         except Exception as e:
