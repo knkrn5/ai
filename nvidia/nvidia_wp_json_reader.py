@@ -1,22 +1,23 @@
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
-import csv
+import json
 
 # Load environment variables
 load_dotenv()
 
 # List to store rows as dictionaries
-csv_files = ['wp-csv-data/wp-pages.csv', 
-            'wp-csv-data/wp-home.csv', 
-            'wp-csv-data/blog-categories.csv', 
-            'wp-csv-data/fin-calculators.csv', 
-            'wp-csv-data/fin-quizzes.csv', 
-            'wp-csv-data/contact-info.csv', 
-            'wp-csv-data/about-us.csv', 
-            'wp-csv-data/our-team.csv', 
-            'wp-csv-data/our-plan.csv'
+json_files = ['wp-json-data/wp-pages.json', 
+            'wp-json-data/wp-home.json', 
+            'wp-json-data/blog-categories.json', 
+            'wp-json-data/fin-calculators.json', 
+            'wp-json-data/fin-quizzes.json', 
+            'wp-json-data/contact-info.json', 
+            'wp-json-data/about-us.json', 
+            'wp-json-data/our-team.json', 
+            'wp-json-data/our-plan.json'
             ]
+
 
 # Initialize the OpenAI client with NVIDIA's base URL and API key
 client = OpenAI(
@@ -24,31 +25,31 @@ client = OpenAI(
     api_key=os.getenv("NVIDIA_API")
 )
 
-# Function to extract text from CSV files
-def extract_csv_text(csv_files):
+# Function to extract text from json files
+def extract_json_text(json_files):
     all_data = []  # List to store combined data from all files
-    for csv_data in csv_files:
+    for json_data in json_files:
         try:
-            with open(csv_data, 'r', encoding='utf-8') as file:
-                reader = csv.DictReader(file)
+            with open(json_data, 'r', encoding='utf-8') as file:
+                reader = json.load(file) # Parse the JSON content as python dictionary
                 for row in reader:
                     all_data.append(row)
         except Exception as e:
-            print(f"Error reading CSV file {csv_data}: {e}")
+            print(f"Error reading JSON file {json_data}: {e}")
     
     return all_data  # Return combined data from all files
 
-# Extract text from CSV files
-csv_text = extract_csv_text(csv_files)
+# Extract text from json files
+json_text = extract_json_text(json_files)
 
-if not csv_text:
-    print("Failed to extract text from the CSV. Please check the file paths and content.")
+if not json_text:
+    print("Failed to extract text from the JSON. Please check the file paths and content.")
     exit()
 
-print("\nCSV Text Extracted Successfully!")
+print("\nJSON Text Extracted Successfully!")
 
 # Convert combined data to text format for the model
-csv_text_str = "\n".join([str(row) for row in csv_text])  # Convert list of dictionaries to a string
+json_text_str = "\n".join([str(row) for row in json_text])  # Convert list of dictionaries to a string
 
 while True:
     # Take user input for the question
@@ -60,13 +61,13 @@ while True:
         break
 
     try:
-        # Create a completion request with the user question and extracted CSV text as context
+        # Create a completion request with the user question and extracted JSON text as context
         completion = client.chat.completions.create(
             model="nvidia/llama-3.1-nemotron-70b-instruct",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant. Only answer based on the provided CSV data. Do not answer any questions that are not based on the CSV data."},
-                {"role": "assistant", "content": "I will only answer questions only based on the provided CSV data."},
-                {"role": "system", "content": f"CSV Data:\n{csv_text_str}"},
+                {"role": "system", "content": "You are a helpful assistant. Only answer based on the provided JSON data. Do not answer any questions that are not based on the JSON data."},
+                {"role": "assistant", "content": "I will only answer questions only based on the provided JSON data."},
+                {"role": "system", "content": f"JSON Data:\n{json_text_str}"},
                 {"role": "user", "content": user_question}
             ],
             temperature=0.5,
