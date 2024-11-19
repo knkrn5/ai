@@ -9,6 +9,7 @@ load_dotenv()
 # List to store rows as dictionaries
 csv_files = ['wp-csv-data/wp-pages.csv', 
             'wp-csv-data/wp-home.csv', 
+            'wp-csv-data/blog-categories.csv', 
             'wp-csv-data/fin-calculators.csv', 
             'wp-csv-data/fin-quizzes.csv', 
             'wp-csv-data/contact-info.csv', 
