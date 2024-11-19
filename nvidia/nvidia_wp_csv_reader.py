@@ -30,8 +30,8 @@ def extract_csv_text(csv_files):
     for csv_data in csv_files:
         try:
             with open(csv_data, 'r', encoding='utf-8') as file:
-                reader = csv.DictReader(file)
-                for row in reader:
+                csv_content = csv.DictReader(file)
+                for row in csv_content:
                     all_data.append(row)
         except Exception as e:
             print(f"Error reading CSV file {csv_data}: {e}")
