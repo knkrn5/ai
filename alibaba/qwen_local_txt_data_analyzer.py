@@ -15,6 +15,8 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 file_path = "data/document.txt"
 with open(file_path, "r", encoding="utf-8") as file:
     document_data = file.read()
+    
+print("text read successfully")
 
 # Set the pad_token_id to avoid warnings
 if tokenizer.pad_token is None:

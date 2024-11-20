@@ -15,15 +15,22 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 # Read external text data
 file_paths = ["wp-csv-data/wp-pages.csv",
             "wp-csv-data/wp-home.csv",
-            "wp-csv-data/blog-categories.csv"]
+            "wp-csv-data/blog-categories.csv",
+            "wp-csv-data/fin-calculators.csv",
+            "wp-csv-data/fin-quizzes.csv",
+            "wp-csv-data/contact-info.csv",
+            "wp-csv-data/about-us.csv",
+            "wp-csv-data/our-team.csv",
+            "wp-csv-data/our-plan.csv"]
 
 all_data = []
 
 for file_path in file_paths:
     with open(file_path, "r", encoding="utf-8") as file:
         all_data.append(file.read())
-        # print("text read successfully")
-        print(all_data)
+
+print("text read successfully")
+# print("\n", all_data)
     
 # Set the pad_token_id to avoid warnings
 if tokenizer.pad_token is None:
@@ -54,13 +61,13 @@ while True:
     # Generate text based on the input
     outputs = model.generate(
         inputs['input_ids'],
-        attention_mask=inputs['attention_mask'],  # Add attention mask
-        max_length=1024,
+        attention_mask=inputs['attention_mask'],
+        max_length=2048,
         temperature=0.5,
-        top_p=0.90,
-        num_return_sequences=1,  # Number of responses to generate
+        # top_p=0.90,
+        num_return_sequences=1, 
         pad_token_id=tokenizer.pad_token_id,  # Avoid warnings
-        repetition_penalty=1.2
+        # repetition_penalty=1.2
     )
 
     # Decode and print the generated text
