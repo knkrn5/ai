@@ -1,9 +1,7 @@
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
-from urllib.parse import urlparse
 import requests
-import json
 from bs4 import BeautifulSoup  # For parsing HTML content
 
 # Load environment variables
@@ -37,8 +35,11 @@ def extract_all_text(url):
         return None
 
 # Replace 'your-website-url' with the URL of your website
-url = "https://wealthpsychology.in/index.html"
+# url = "https://wealthpsychology.in/index.html"
+url = "https://wealthpsychology.in/contact-us/"
 website_text = extract_all_text(url)
+
+print("Extracted Text successfully from the Website:")
                 
             
 # with open("website_text", "r", encoding="utf-8") as textFile:
