@@ -99,7 +99,8 @@ DESCRIPTION = "This dataset contains tokenized data for Wealth Psychology websit
 
 # Push the dataset to the Hugging Face Hub
 tokenized_data.push_to_hub(
-    repo_id=DATASET_NAME,  
+    repo_id=DATASET_NAME, 
+    # repo_id="your_huggingface_username/your_dataset_name", 
     private=False,         
     token=os.getenv("HUGGING_FACE_WRITE_API")  
 ) """
