@@ -85,6 +85,8 @@ print(wealthpsychology_pages_tokenized["attention_mask"][0])  # Attention mask
 
 decoded_text = tokenizer.decode(wealthpsychology_pages_tokenized["input_ids"][0], skip_special_tokens=True)
 decoded_text = tokenizer.decode(wp_home_tokenized["input_ids"][0], skip_special_tokens=True)
+decoded_text = tokenizer.decode(about_us_tokenized["input_ids"][0], skip_special_tokens=True)
+decoded_text = tokenizer.decode(our_team_tokenized["input_ids"][0], skip_special_tokens=True)
 print(decoded_text)
 
 
