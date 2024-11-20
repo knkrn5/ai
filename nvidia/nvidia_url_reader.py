@@ -7,37 +7,45 @@ from bs4 import BeautifulSoup  # For parsing HTML content
 # Load environment variables
 load_dotenv()
 
+urls = ["https://wealthpsychology.in/index.html",
+        "https://wealthpsychology.in/contact-us/"
+    ]
+
+all_data = []
+
 # Initialize the OpenAI client with NVIDIA's base URL and API key
 client = OpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
     api_key=os.getenv("NVIDIA_API")
 )
 
-def extract_all_text(url):
+def extract_all_text(urls):
     try:
         # Send a GET request to the URL
-        response = requests.get(url)
-        response.raise_for_status()  # Raise exception for HTTP errors
+        for url in urls:
+            response = requests.get(url)
+            response.raise_for_status()  # Raise exception for HTTP errors
 
-        # Parse the HTML content of the page
-        soup = BeautifulSoup(response.text, 'html.parser')
+            # Parse the HTML content of the page
+            soup = BeautifulSoup(response.text, 'html.parser')
 
-        # Extract all text
-        text = soup.get_text(separator="\n")  # Separate text blocks with newlines
+            # Extract all text
+            text = soup.get_text(separator="\n")  # Separate text blocks with newlines
 
-        # Remove extra newlines
-        cleaned_text = "\n".join(line.strip() for line in text.splitlines() if line.strip())
+            # Remove extra newlines
+            cleaned_text = "\n".join(line.strip() for line in text.splitlines() if line.strip())
+            
+            # Append cleaned text to the list
+            all_data.append(cleaned_text)
 
-        return cleaned_text
+        return "\n\n".join(all_data)
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred while fetching the URL: {e}")
         return None
 
-# Replace 'your-website-url' with the URL of your website
-# url = "https://wealthpsychology.in/index.html"
-url = "https://wealthpsychology.in/contact-us/"
-website_text = extract_all_text(url)
+# calling function
+website_text = extract_all_text(urls)
 
 print("Extracted Text successfully from the Website:")
                 
