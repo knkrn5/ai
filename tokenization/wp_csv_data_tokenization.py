@@ -1,6 +1,10 @@
+import os
 import pandas as pd
 from datasets import Dataset, DatasetDict
 from transformers import AutoTokenizer
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Load all CSV files into DataFrames (ensure the paths are correct)
 wp_pages_df = pd.read_csv('wp-csv-data/wp-pages.csv')
@@ -76,5 +80,25 @@ tokenized_data = DatasetDict({
 
 # Check tokenized data
 print(tokenized_data)
-print(wealthpsychology_pages_tokenized["input_ids"][0])  # Full input IDs for the first example
-print(wealthpsychology_pages_tokenized["attention_mask"][0])  # Attention mask for the first example
+print(wealthpsychology_pages_tokenized["input_ids"][0])  # Full input IDs
+print(wealthpsychology_pages_tokenized["attention_mask"][0])  # Attention mask 
+
+decoded_text = tokenizer.decode(wealthpsychology_pages_tokenized["input_ids"][0], skip_special_tokens=True)
+decoded_text = tokenizer.decode(wp_home_tokenized["input_ids"][0], skip_special_tokens=True)
+print(decoded_text)
+
+
+
+
+
+#for pushing dataset in hugging-face
+""" DATASET_NAME = "wealthpsychology-tokenized-data"
+DESCRIPTION = "This dataset contains tokenized data for Wealth Psychology website content, tokenized using Longformer tokenizer."
+
+# Push the dataset to the Hugging Face Hub
+tokenized_data.push_to_hub(
+    repo_id=DATASET_NAME,  
+    private=False,         
+    token=os.getenv("HUGGING_FACE_WRITE_API")  
+) """
+
