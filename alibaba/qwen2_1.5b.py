@@ -41,7 +41,7 @@ while True:
         temperature=0.5, 
         # top_k=50,
         top_p=0.90,
-        num_return_sequences=3,  # Number of responses to generate
+        num_return_sequences=1,  # Number of responses to generate
         pad_token_id=tokenizer.pad_token_id,  # Avoid warnings
     )
 
