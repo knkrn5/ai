@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
+import csv
 
 # Use more CPU threads if running on CPU
 torch.set_num_threads(10)
@@ -12,10 +13,18 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
 # Read external text data
-file_path = "data/document.txt"
-with open(file_path, "r", encoding="utf-8") as file:
-    document_data = file.read()
+file_paths = ["wp-csv-data/wp-pages.csv",
+            "wp-csv-data/wp-home.csv",
+            "wp-csv-data/blog-categories.csv"]
 
+all_data = []
+
+for file_path in file_paths:
+    with open(file_path, "r", encoding="utf-8") as file:
+        all_data.append(file.read())
+        # print("text read successfully")
+        print(all_data)
+    
 # Set the pad_token_id to avoid warnings
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
@@ -33,10 +42,14 @@ while True:
         break
 
     # Combine document data with user input
-    combined_input = f"Document: {document_data}\n\nQuestion: {user_input}"
+    combined_input = f"Document: {all_data}\n\nQuestion: {user_input}"
 
     # Tokenize the combined input
-    inputs = tokenizer(combined_input, return_tensors="pt", padding=True, truncation=True).to(device)
+    inputs = tokenizer(combined_input,
+                        return_tensors="pt",
+                        padding=True,
+                        truncation=True,
+                        max_length=1024).to(device)
 
     # Generate text based on the input
     outputs = model.generate(

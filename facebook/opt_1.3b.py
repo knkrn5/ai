@@ -28,7 +28,9 @@ while True:
         break
 
     # Tokenize the input
-    inputs = tokenizer(user_input, return_tensors="pt", padding=True).to(device)
+    inputs = tokenizer(user_input,
+                        return_tensors="pt",
+                        padding=True).to(device)
     
     # Display progress bar while generating response
     print("Processing...")

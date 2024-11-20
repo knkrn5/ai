@@ -26,7 +26,9 @@ while True:
         break
 
     # Tokenize user input and move tensors to the correct device
-    inputs = tokenizer(user_question, return_tensors="pt", padding=True).to(device)
+    inputs = tokenizer(user_question,
+                        return_tensors="pt",
+                        padding=True).to(device)
 
     # Display progress bar while generating response
     print("Processing...")

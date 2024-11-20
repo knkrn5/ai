@@ -16,11 +16,11 @@ client = OpenAI(
 )
 
 # Function to extract text from a CSV file
-def extract_csv_text(csv_path):
+def extract_csv_text(csv_path): 
     try:
         with open(csv_path, 'r', encoding='utf-8') as file:
-            reader = csv.DictReader(file) 
-            for row in reader:
+            csv_data = csv.DictReader(file) #reads the CSV file into a dictionary-like structure
+            for row in csv_data:
                 combined_data.append(row)
             return combined_data
     except Exception as e:

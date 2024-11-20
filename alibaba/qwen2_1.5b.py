@@ -29,7 +29,9 @@ while True:
         break
 
     # Tokenize the input
-    inputs = tokenizer(user_input, return_tensors="pt", padding=True).to(device)
+    inputs = tokenizer(user_input,
+                        return_tensors="pt",
+                        padding=True).to(device)
 
     # Generate text based on the input
     outputs = model.generate(

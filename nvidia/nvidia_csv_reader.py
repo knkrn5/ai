@@ -16,9 +16,9 @@ client = OpenAI(
 def extract_csv_text(csv_path):
     try:
         with open(csv_path, 'r') as file:
-            reader = csv.reader(file)
+            csv_data = csv.reader(file) #reads the CSV file as a list of lists
             # Combine rows into a formatted string
-            rows = [" | ".join(row) for row in reader]
+            rows = [" | ".join(row) for row in csv_data]
             text = "\n".join(rows)
         return text
     except Exception as e:
