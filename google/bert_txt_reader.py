@@ -16,8 +16,8 @@ model = model.to(device)
 
 
 # Read document (context) from an external file
-with open("data/document.txt", "r") as file:
-    document = file.read()
+""" with open("data/document.txt", "r") as file:
+    document = file.read() """
 
 while True:
     
@@ -27,7 +27,18 @@ while True:
     if user_input.lower() in ["exit", 'q']:
         print("Exiting...")
         break
+    
+        # Tokenize user input and move tensors to the correct device
+    inputs = tokenizer(user_input, return_tensors="pt", padding=True).to(device)
 
-    # Loop through questions and get answers
-    print(f"Question: {user_input}")
-    print(f"Answer: {result['answer']}\n")
+    # Generate the output
+    outputs = model.generate(
+            inputs['input_ids'], 
+            attention_mask=inputs['attention_mask'],  # Set attention mask here
+            max_length=100,
+            pad_token_id=model.config.pad_token_id  # Set pad_token_id here
+        )
+
+    # Decode and print the generated text
+    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    print("Generated Response:", generated_text)
