@@ -42,11 +42,12 @@ while True:
     outputs = model.generate(
         inputs['input_ids'],
         attention_mask=inputs['attention_mask'],  # Add attention mask
-        max_length=2000,
+        max_length=1024,
         temperature=0.5,
         top_p=0.90,
         num_return_sequences=1,  # Number of responses to generate
         pad_token_id=tokenizer.pad_token_id,  # Avoid warnings
+        repetition_penalty=1.2
     )
 
     # Decode and print the generated text

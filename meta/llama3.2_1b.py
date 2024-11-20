@@ -44,6 +44,7 @@ while True:
             attention_mask=inputs['attention_mask'],  # Add attention mask
             max_length=200,  # Adjust max_length as needed
             temperature=0.5,  # Control randomness of the output
+            repetition_penalty=1.2,
             num_return_sequences=1,  # Number of responses to generate
             pad_token_id=tokenizer.pad_token_id,  # Avoid warnings
         )

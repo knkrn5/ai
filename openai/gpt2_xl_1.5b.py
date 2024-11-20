@@ -39,6 +39,7 @@ while True:
             inputs['input_ids'], 
             attention_mask=inputs['attention_mask'],  # Set attention mask here
             max_length=100,
+            repetition_penalty=1.2,
             pad_token_id=model.config.pad_token_id  # Set pad_token_id here
         )
 

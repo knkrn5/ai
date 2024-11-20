@@ -44,6 +44,7 @@ while True:
         temperature=0.5,
         top_p=0.7,
         max_tokens=1024,
+        # repetition_penalty=1.2,
         stream=True
     )
 
