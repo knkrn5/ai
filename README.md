@@ -16,12 +16,13 @@ Welcome to AI! The reason for creating this project is to get the good explanati
 - GPT2-XL (1.5b parameter) from Open AI
 - Phi (1.4b parameter) from microsoft
 - Gemini 1.5 flash from google
+- Models using hugging-face interface API
 
 ## Introduction
 The reason for creating this project is to get the good explanation of the prompt and the make the follow up questions very simple point by point or number by number.
 
 ## Features
-- To make it very easy to ask the follow up questions
+- To make it very easy to ask the follow up questions point by point.
 
 ## Usage
 The aim of this project is to ask the follow up question very easily point by point, so that the user don't have to again and again scroll up and down to ask the follow up question for one point. Instead the user will be able to ask the follow up question just below that point. This will be same for every point in the answer.
