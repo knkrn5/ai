@@ -27,6 +27,7 @@ while True:
             {"role": "user", "content": user_question}
         ],
         temperature=0.5,
+        # top_k = 50,
         top_p=0.7,
         max_tokens=1024,
         stream=True
