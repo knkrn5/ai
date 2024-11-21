@@ -7,15 +7,15 @@ import csv
 load_dotenv()
 
 # List to store rows as dictionaries
-csv_files = ['wp-csv-data/wp-pages.csv', 
-            'wp-csv-data/wp-home.csv', 
-            'wp-csv-data/blog-categories.csv', 
-            'wp-csv-data/fin-calculators.csv', 
-            'wp-csv-data/fin-quizzes.csv', 
-            'wp-csv-data/contact-info.csv', 
-            'wp-csv-data/about-us.csv', 
-            'wp-csv-data/our-team.csv', 
-            'wp-csv-data/our-plan.csv'
+csv_files = ['data/wp-csv-data/wp-pages.csv', 
+            'data/wp-csv-data/wp-home.csv', 
+            'data/wp-csv-data/blog-categories.csv', 
+            'data/wp-csv-data/fin-calculators.csv', 
+            'data/wp-csv-data/fin-quizzes.csv', 
+            'data/wp-csv-data/contact-info.csv', 
+            'data/wp-csv-data/about-us.csv', 
+            'data/wp-csv-data/our-team.csv', 
+            'data/wp-csv-data/our-plan.csv'
             ]
 
 # Initialize the OpenAI client with NVIDIA's base URL and API key

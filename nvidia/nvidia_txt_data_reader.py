@@ -11,7 +11,7 @@ client = OpenAI(
 )
 
 # txt docs path
-txt_path = "./data/document.txt"
+txt_path = "./data/wp-txt-data/about-me.txt"
 
 # Open the file in read mode ('r')
 with open(txt_path, 'r', encoding='utf-8') as file:

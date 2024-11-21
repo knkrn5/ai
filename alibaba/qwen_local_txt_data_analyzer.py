@@ -12,7 +12,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
 # Read external text data
-file_path = "data/document.txt"
+file_path = "data/wp-txt-data/about-me.txt"
 with open(file_path, "r", encoding="utf-8") as file:
     document_data = file.read()
     

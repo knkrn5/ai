@@ -8,18 +8,18 @@ load_dotenv()
 
 # List of JSON files to process
 json_files = [
-    'wp-json-data/wp-pages.json',
-    'wp-json-data/wp-home.json',
-    'wp-json-data/blog-categories.json',
-    'wp-json-data/fin-calculators.json',
-    'wp-json-data/fin-quizzes.json',
-    'wp-json-data/contact-info.json',
-    'wp-json-data/about-us.json',
-    'wp-json-data/our-team.json',
-    'wp-json-data/our-plan.json'
+    'data/wp-json-data/wp-pages.json',
+    'data/wp-json-data/wp-home.json',
+    'data/wp-json-data/blog-categories.json',
+    'data/wp-json-data/fin-calculators.json',
+    'data/wp-json-data/fin-quizzes.json',
+    'data/wp-json-data/contact-info.json',
+    'data/wp-json-data/about-us.json',
+    'data/wp-json-data/our-team.json',
+    'data/wp-json-data/our-plan.json'
 ]
 
-text_file = "wp-txt-data/about-me.txt"
+text_file = "data/wp-txt-data/about-me.txt"
 
 # Initialize the OpenAI client with NVIDIA's base URL and API key
 client = OpenAI(

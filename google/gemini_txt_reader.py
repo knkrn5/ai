@@ -13,7 +13,7 @@ model_name = "gemini-1.5-flash"
 model = genai.GenerativeModel(model_name)
 
 # Specify the file path
-file_path = "./data/document.txt"
+file_path = "./data/wp-txt-data/about-me.txt"
 
 # Read the file content
 try:

@@ -7,15 +7,15 @@ import json
 load_dotenv()
 
 # List to store rows as dictionaries
-json_files = ['wp-json-data/wp-pages.json', 
-            'wp-json-data/wp-home.json', 
-            'wp-json-data/blog-categories.json', 
-            'wp-json-data/fin-calculators.json', 
-            'wp-json-data/fin-quizzes.json', 
-            'wp-json-data/contact-info.json', 
-            'wp-json-data/about-us.json', 
-            'wp-json-data/our-team.json', 
-            'wp-json-data/our-plan.json'
+json_files = ['data/wp-json-data/wp-pages.json', 
+            'data/wp-json-data/wp-home.json', 
+            'data/wp-json-data/blog-categories.json', 
+            'data/wp-json-data/fin-calculators.json', 
+            'data/wp-json-data/fin-quizzes.json', 
+            'data/wp-json-data/contact-info.json', 
+            'data/wp-json-data/about-us.json', 
+            'data/wp-json-data/our-team.json', 
+            'data/wp-json-data/our-plan.json'
             ]
 
 
