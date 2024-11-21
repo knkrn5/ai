@@ -8,6 +8,9 @@ from bs4 import BeautifulSoup  # For parsing HTML content
 load_dotenv()
 
 urls = ["https://wealthpsychology.in/index.html",
+        "https://wealthpsychology.in/blog/",
+        "https://wealthpsychology.in/financial-calculators/",
+        "https://wealthpsychology.in/finance-quizzes/",
         "https://wealthpsychology.in/contact-us/"
     ]
 
