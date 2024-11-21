@@ -43,6 +43,7 @@ while True:
         top_p=0.90,
         num_return_sequences=1,  # Number of responses to generate
         pad_token_id=tokenizer.pad_token_id,  # Avoid warnings
+        # repetition_penalty=1.2
     )
 
     # Decode and print the generated text

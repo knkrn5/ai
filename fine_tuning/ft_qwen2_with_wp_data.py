@@ -1,23 +1,32 @@
 import os
 from datasets import load_dataset, concatenate_datasets
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    Trainer,
+    TrainingArguments,
+    DataCollatorForLanguageModeling
+)
 import torch
+
+# Environment variables
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"  # To avoid fragmentation
+os.environ["WANDB_DISABLED"] = "true"
 
 # Load the dataset
 dataset = load_dataset("knkrn5/wealthpsychology-tokenized-data")
 
-# Check if the data has the tokenized format
 print(dataset)
 
-model_name = "gpt2"
+# Load Qwen model and tokenizer
+model_name = "Qwen/Qwen2.5-1.5B-Instruct"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
 
-# Define the model
-model = GPT2LMHeadModel.from_pretrained(model_name)
-tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+# Enable gradient checkpointing to save memory
+model.gradient_checkpointing_enable()
 
-os.environ["WANDB_DISABLED"] = "true"
-
-# Setting the pad_token_id to the eos_token_id to avoid warnings and errors
+# Ensure pad_token is set to eos_token
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 model.config.pad_token_id = model.config.eos_token_id
@@ -42,8 +51,7 @@ training_args = TrainingArguments(
     fp16=True,  # Mixed precision training
 )
 
-
-# Prepare the dataset
+# Preprocessing function for the dataset
 def preprocess_function(examples):
     return {
         "input_ids": examples["input_ids"],
@@ -53,22 +61,25 @@ def preprocess_function(examples):
 # Apply the preprocessing function
 tokenized_datasets = dataset.map(preprocess_function, batched=True)
 
-# Concatenate datasets for training and evaluation
-train_dataset = concatenate_datasets([tokenized_datasets["wp_pages"],
-                                        tokenized_datasets["blog_categories"],
-                                        tokenized_datasets["fin_calculators"],
-                                        tokenized_datasets["fin_quizzes"]])
+# Split the datasets into train and eval datasets
+train_dataset = concatenate_datasets([
+    tokenized_datasets["wp_pages"],
+    tokenized_datasets["blog_categories"],
+    tokenized_datasets["fin_calculators"],
+    tokenized_datasets["fin_quizzes"]
+])
+eval_dataset = concatenate_datasets([
+    tokenized_datasets["wp_home"],
+    tokenized_datasets["contact_info"],
+    tokenized_datasets["about_us"],
+    tokenized_datasets["our_team"],
+    tokenized_datasets["our_plan"]
+])
 
-eval_dataset = concatenate_datasets([tokenized_datasets["wp_home"],
-                                        tokenized_datasets["contact_info"],
-                                        tokenized_datasets["about_us"],
-                                        tokenized_datasets["our_team"],
-                                        tokenized_datasets["our_plan"]])
-
-# Define the data collator for language modeling (handles padding)
+# Define the data collator for causal language modeling
 data_collator = DataCollatorForLanguageModeling(
     tokenizer=tokenizer,
-    mlm=False,  # GPT-2 does not use masked language modeling
+    mlm=False
 )
 
 # Initialize the Trainer
@@ -77,12 +88,13 @@ trainer = Trainer(
     args=training_args,
     train_dataset=train_dataset,
     eval_dataset=eval_dataset,
-    data_collator=data_collator,  # Use the data collator for padding
+    data_collator=data_collator,
     tokenizer=tokenizer,
 )
 
-# Start the training process
+# Start training
 trainer.train()
 
+# Save the final model and tokenizer
 model.save_pretrained("./final_model")
 tokenizer.save_pretrained("./final_model")
