@@ -41,14 +41,26 @@ while True:
             f"Text Data:\n{file_content}\n\n"
             f"User's Question: {user_question}"
         )
+        
+        """ safety_settings = {
+            'HATE': 'BLOCK_NONE',  
+            'HARASSMENT': 'BLOCK_NONE',  
+            'SEXUAL_EXPLICIT': 'BLOCK_HIGH',  
+            'DANGEROUS': 'BLOCK_HIGH'  
+            } """
 
         response = model.generate_content(
             contents=prompt,
-            generation_config=genai.types.GenerationConfig(
-                max_output_tokens=500  # Adjust token limit as needed
-            )
+            generation_config=genai.types.GenerationConfig(max_output_tokens=1024),
+            # safety_settings=safety_settings,
+            stream=True,
+            tools=None,
+            tool_config=None,
+            request_options=None
         )
-        print("Response:")
+        # print(response.text)
+        for chunk in response:
+                print(chunk.text, end='')
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         print("Please try again or check your API key and internet connection.")

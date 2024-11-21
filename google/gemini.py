@@ -20,8 +20,13 @@ while True:
         break
 
     try:
-        response = model.generate_content(user_question)
-        print(response.text)
+        response = model.generate_content(
+            user_question,
+            generation_config=genai.types.GenerationConfig(max_output_tokens=1024),
+            stream=True
+            )
+        for chunk in response:
+                print(chunk.text, end='')
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         print("Please try again or check your API key and internet connection.")
