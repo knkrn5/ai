@@ -9,7 +9,7 @@ dataset = load_dataset("knkrn5/wealthpsychology-tokenized-data")
 # Check if the data has the tokenized format
 print(dataset)
 
-model_name = "gpt2"
+model_name = "gpt2" #similarly it can be fine-tuned with gpt2-xl, gpt2-medium, gpt2-large.
 
 # Define the model
 model = GPT2LMHeadModel.from_pretrained(model_name)
@@ -25,6 +25,8 @@ model.config.pad_token_id = model.config.eos_token_id
 # Move the model to GPU if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
+print(f"Using device: {device}")
+
 
 # Define the training arguments
 training_args = TrainingArguments(
@@ -81,8 +83,15 @@ trainer = Trainer(
     tokenizer=tokenizer,
 )
 
-# Start the training process
-trainer.train()
-
-model.save_pretrained("./final_model")
-tokenizer.save_pretrained("./final_model")
+# Train the model
+try:
+    trainer.train()
+    
+    # Save the model
+    output_dir = "./final_model"
+    model.save_pretrained(output_dir)
+    tokenizer.save_pretrained(output_dir)
+    print(f"Model saved to {output_dir}")
+    
+except Exception as e:
+    print(f"An error occurred during training: {str(e)}")

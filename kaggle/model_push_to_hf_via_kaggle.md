@@ -1,12 +1,10 @@
-# first login install
-pip install transformers huggingface-hub
-
-# then
 from huggingface_hub import login
-from google.colab import userdata
+from kaggle_secrets import UserSecretsClient
+user_secrets = UserSecretsClient()
+
 
 # Login to Hugging Face (you will be prompted for your Hugging Face token)
-login(token=userdata.get('HUGGING_FACE_WRITE'))
+login(token=user_secrets.get_secret("hugging_face_write"))
 
 from huggingface_hub import upload_folder
 
@@ -23,4 +21,3 @@ upload_folder(
     path_in_repo=".",  # Place all files in the root of the repository
     #overwrite=True  # Overwrite existing files in the repository
 )
-
