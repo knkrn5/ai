@@ -1,5 +1,4 @@
 # Ignore the entire virtual environment folder
-data/
 .env  
 .venv
 .vscode
@@ -15,7 +14,8 @@ log/
 results/
 final_model
 
-#wp-data
+#wp-data and data
+data/
 wp-csv-data/
 wp-json-data/
 wp-txt-data/
