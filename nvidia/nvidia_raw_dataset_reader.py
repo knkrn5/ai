@@ -17,7 +17,8 @@ all_data = []
 for split_name, split_data in dataset.items():
     split_df = split_data.to_pandas()
     all_data.append(split_df)
-    print(split_df.head())
+    # print(split_df.head())
+    print(all_data)
     print("\n" + "="*50 + "\n")
     
 
