@@ -18,6 +18,7 @@ model.config.pad_token_id = model.config.eos_token_id
 # Move model to GPU if available
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model = model.to(device)
+print(f"Using device: {device}")
 
 while True:
     user_question = input("Please ask a question or type 'exit' or 'q' to exit: ")

@@ -20,6 +20,7 @@ model.config.pad_token_id = model.config.eos_token_id
 # device = "cuda" if torch.cuda.is_available() else "cpu"
 device = "cpu"
 model = model.to(device)
+print(f"Using device: {device}")
 
 while True:
     # Take user input
