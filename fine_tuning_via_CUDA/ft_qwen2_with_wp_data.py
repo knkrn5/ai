@@ -31,7 +31,6 @@ training_args = TrainingArguments(
     output_dir="./results",
     eval_strategy="epoch",
     learning_rate=5e-5,
-    per_device_train_batch_size=2,
     per_device_eval_batch_size=2,  # Added eval batch size
     gradient_accumulation_steps=2,
     num_train_epochs=5,
