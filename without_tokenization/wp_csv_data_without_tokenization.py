@@ -50,7 +50,7 @@ def standardize_dataframe(df, required_columns=['topic', 'description']):
     'plan_link': 'description'
 }
  """
-# Rename and standardize all dataframes
+
 # Rename and standardize all dataframes
 dataframes = {
     'wp_pages': wp_pages_df.rename(columns={'wp nav': 'topic', 'wp nav_link': 'description'}),
