@@ -7,15 +7,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Load all CSV files into DataFrames
-wp_pages_df = pd.read_csv('wp-csv-data/wp-pages.csv')
-wp_home_df = pd.read_csv('wp-csv-data/wp-home.csv')
-blog_categories_df = pd.read_csv('wp-csv-data/blog-categories.csv')
-fin_calculators_df = pd.read_csv('wp-csv-data/fin-calculators.csv')
-fin_quizzes_df = pd.read_csv('wp-csv-data/fin-quizzes.csv')
-contact_info_df = pd.read_csv('wp-csv-data/contact-info.csv')
-about_us_df = pd.read_csv('wp-csv-data/about-us.csv')
-our_team_df = pd.read_csv('wp-csv-data/our-team.csv')
-our_plan_df = pd.read_csv('wp-csv-data/our-plan.csv')
+wp_pages_df = pd.read_csv('data/wp-csv-data/wp-pages.csv')
+wp_home_df = pd.read_csv('data/wp-csv-data/wp-home.csv')
+blog_categories_df = pd.read_csv('data/wp-csv-data/blog-categories.csv')
+fin_calculators_df = pd.read_csv('data/wp-csv-data/fin-calculators.csv')
+fin_quizzes_df = pd.read_csv('data/wp-csv-data/fin-quizzes.csv')
+contact_info_df = pd.read_csv('data/wp-csv-data/contact-info.csv')
+about_us_df = pd.read_csv('data/wp-csv-data/about-us.csv')
+our_team_df = pd.read_csv('data/wp-csv-data/our-team.csv')
+our_plan_df = pd.read_csv('data/wp-csv-data/our-plan.csv')
 
 # Function to standardize DataFrame structure
 def standardize_dataframe(df, required_columns=['wp nav', 'wp nav_link']):

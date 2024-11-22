@@ -38,7 +38,10 @@ while True:
     combined_input = f"Document: {document_data}\n\nQuestion: {user_input}"
 
     # Tokenize the combined input
-    inputs = tokenizer(combined_input, return_tensors="pt", padding=True, truncation=True).to(device)
+    inputs = tokenizer(combined_input,
+                        return_tensors="pt",
+                        padding=True,
+                        truncation=True).to(device)
 
     # Generate text based on the input
     outputs = model.generate(
