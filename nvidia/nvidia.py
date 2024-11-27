@@ -12,10 +12,10 @@ client = OpenAI(
 
 while True:
     # Take user input for the question
-    user_question = input("\nPlease enter your question (or type 'exit' or 'q' to quit): ")
+    user_input = input("\nPlease enter your question (or type 'exit' or 'q' to quit): ")
 
     # Exit the loop if the user types 'exit'
-    if user_question.lower() in ['exit', 'q']:
+    if user_input.lower() in ['exit', 'q']:
         print("Exiting the program.")
         break
 
@@ -24,7 +24,7 @@ while True:
         model="nvidia/llama-3.1-nemotron-70b-instruct",
         messages=[
             {"role": "system", "content": " your are an AI assistant."},
-            {"role": "user", "content": user_question}
+            {"role": "user", "content": user_input}
         ],
         temperature=0.5,
         # top_k = 50,
