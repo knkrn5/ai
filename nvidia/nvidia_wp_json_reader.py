@@ -50,6 +50,7 @@ print("\nJSON Text Extracted Successfully!")
 
 # Convert combined data to text format for the model
 json_text_str = "\n".join([str(row) for row in json_text])  # Convert list of dictionaries to a string
+print(json_text_str)
 
 while True:
     # Take user input for the question

@@ -43,7 +43,7 @@ def extract_all_text(urls):
         return None
 
 # calling function
-website_data = extract_all_text(urls)
+extract_all_text(urls)
 # print(website_data)
 print(all_data)
 

@@ -49,7 +49,7 @@ def standardize_dataframe(df, required_columns=['topic', 'description']):
     'plan': 'topic',
     'plan_link': 'description'
 }
- """
+"""
 
 # Rename and standardize all dataframes
 dataframes = {
